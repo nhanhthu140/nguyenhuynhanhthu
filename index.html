@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f5f0">
   <meta name="description" content="Portfolio của Anh Thư, sinh viên Thương mại điện tử tại UEH, định hướng vận hành sàn Shopee và TikTok Shop.">
-  <title>Anh Thư - Portfolio Thương mại điện tử</title>
+  <title>Anh Thư — Vận hành sàn Thương mại điện tử</title>
   <style>
     :root {
       color-scheme: light;
@@ -279,28 +279,90 @@
     .skill strong { display: block; font-size: 17px; font-weight: 700; line-height: 1.4; }
     .skill small { display: block; margin-top: 7px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 
-    .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .project-card {
+    .projects-list { display: grid; gap: clamp(48px, 8vw, 104px); }
+    .editorial-project {
+      padding: clamp(24px, 5vw, 64px);
+      border: 1px solid #e3e3da;
+      border-radius: 4px;
+      background: #eeeee7;
+    }
+    .project-heading {
       display: flex;
-      flex-direction: column;
-      border: 1px solid var(--line);
-      border-radius: 5px;
-      background: var(--surface);
-      overflow: hidden;
-      transition: border-color .2s ease, transform .2s ease;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: clamp(28px, 4vw, 48px);
+      padding-bottom: 20px;
+      border-bottom: 1px solid #d5d8ce;
     }
-    .project-card:hover { transform: translateY(-4px); border-color: #9eb4a4; }
-    .project-image { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; background: #e9eee8; }
-    .project-content { display: flex; height: 100%; flex-direction: column; padding: 24px; }
-    .project-card h3 {
-      margin-bottom: 10px;
-      font-family: var(--serif);
-      font-size: 25px;
-      font-weight: 650;
-      letter-spacing: -.025em;
-      line-height: 1.18;
+    .project-number {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
-    .project-card p { margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+    .project-heading h3 {
+      margin: 0;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -.07em;
+      line-height: .95;
+    }
+    .project-kind {
+      max-width: 230px;
+      padding-bottom: 6px;
+      color: var(--muted);
+      font-size: 15px;
+      text-align: right;
+    }
+    .project-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(230px, .7fr);
+      align-items: start;
+      gap: clamp(28px, 5vw, 64px);
+    }
+    .project-gallery { min-width: 0; }
+    .project-gallery img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #dfe4dc;
+    }
+    .gallery-gu {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+      grid-template-rows: repeat(2, minmax(150px, 1fr));
+      gap: 14px;
+    }
+    .gallery-gu .main-img { grid-row: 1 / span 2; min-height: 440px; }
+    .gallery-gu .sub-img { min-height: 205px; }
+    .gallery-oc {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.35fr) minmax(0, .8fr);
+      align-items: center;
+      gap: 14px;
+    }
+    .gallery-oc .main-img { min-height: 390px; }
+    .gallery-oc .sub-img { min-height: 260px; }
+    .project-details {
+      display: grid;
+      gap: 24px;
+      padding-top: 6px;
+    }
+    .project-details h4 {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .project-details p { margin: 0; color: #435149; font-size: 17px; line-height: 1.7; }
+    .project-details .result-copy { color: var(--muted); }
     .contact-section { padding: 82px 0 38px; background: var(--green-dark); color: #fff; }
     .contact-top {
       display: grid;
@@ -358,8 +420,9 @@
       .about-grid { grid-template-columns: .6fr 1.4fr; gap: 45px; }
       .education-grid { grid-template-columns: 1fr 1fr; }
       .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card h3 { max-width: none; }
+      .project-body { grid-template-columns: 1fr; }
+      .project-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gallery-gu .main-img { min-height: 400px; }
     }
     @media (max-width: 600px) {
       html { scroll-padding-top: 120px; }
@@ -381,6 +444,16 @@
       h1 { font-size: clamp(43px, 11vw, 62px); }
       .hero-photo { width: min(75%, 280px); justify-self: center; }
       .section { padding: 68px 0; }
+      .project-heading { align-items: start; flex-direction: column; }
+      .project-heading h3 { font-size: clamp(3rem, 16vw, 5rem); }
+      .project-kind { text-align: left; }
+      .gallery-gu { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+      .gallery-gu .main-img { grid-column: 1 / -1; grid-row: auto; min-height: 0; aspect-ratio: 4 / 3; }
+      .gallery-gu .sub-img { min-height: 0; aspect-ratio: 4 / 3; }
+      .gallery-oc { grid-template-columns: 1fr 1fr; }
+      .gallery-oc .main-img { grid-column: 1 / -1; grid-row: 1; min-height: 0; aspect-ratio: 4 / 3; }
+      .gallery-oc .sub-img { min-height: 0; aspect-ratio: 4 / 3; }
+      .project-details { grid-template-columns: 1fr; gap: 20px; }
       .section-heading { align-items: start; flex-direction: column; gap: 14px; margin-bottom: 29px; }
       .section-note { max-width: 450px; }
       .about-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -513,26 +586,58 @@
           </div>
           <p class="section-note">Một số trải nghiệm dự án về chiến lược tiếp thị và kinh doanh trên nền tảng số.</p>
         </div>
-        <div class="projects-grid">
-          <article class="project-card">
-            <img class="project-image" src="https://via.placeholder.com/400x200" alt="Ảnh minh họa dự án Gu Trà" width="400" height="200">
-            <div class="project-content">
-              <h3>Gu Trà</h3>
-              <p>Hoạch định chiến lược Digital Marketing &amp; Quản trị dự án.</p>
+        <div class="projects-list">
+          <article class="editorial-project" aria-labelledby="gu-tra-title">
+            <header class="project-heading">
+              <div>
+                <span class="project-number">Dự án 01</span>
+                <h3 id="gu-tra-title">GU TRÀ</h3>
+              </div>
+              <p class="project-kind">Chiến lược Digital Marketing<br>&amp; quản trị dự án</p>
+            </header>
+            <div class="project-body">
+              <div class="project-gallery gallery-gu" aria-label="Thư viện ảnh dự án Gu Trà">
+                <img class="main-img" src="https://via.placeholder.com/400x600" alt="Ảnh dọc dự án Gu Trà" width="400" height="600">
+                <img class="sub-img" src="https://via.placeholder.com/400x200" alt="Ảnh ngang dự án Gu Trà, phần 1" width="400" height="200">
+                <img class="sub-img" src="https://via.placeholder.com/400x200" alt="Ảnh ngang dự án Gu Trà, phần 2" width="400" height="200">
+              </div>
+              <div class="project-details">
+                <section>
+                  <h4>Vai trò</h4>
+                  <p>Quản trị dự án &amp; Hoạch định chiến lược Digital Marketing.</p>
+                </section>
+                <section>
+                  <h4>Kết quả &amp; ghi nhận</h4>
+                  <p class="result-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Thêm số liệu chiến dịch, kết quả tiếp cận và các ghi nhận thực tế tại đây.</p>
+                </section>
+              </div>
             </div>
           </article>
-          <article class="project-card">
-            <img class="project-image" src="https://via.placeholder.com/400x200" alt="Ảnh minh họa website Ốc Len Shop" width="400" height="200">
-            <div class="project-content">
-              <h3>Ốc Len Shop</h3>
-              <p>Website TMĐT (WooCommerce) bán các sản phẩm đan móc và len sợi.</p>
-            </div>
-          </article>
-          <article class="project-card">
-            <img class="project-image" src="https://via.placeholder.com/400x200" alt="Ảnh minh họa cửa hàng Len Rối trên Shopee" width="400" height="200">
-            <div class="project-content">
-              <h3>Len Rối</h3>
-              <p>Cửa hàng TMĐT trên sàn Shopee chuyên sản phẩm len.</p>
+
+          <article class="editorial-project" aria-labelledby="oc-len-title">
+            <header class="project-heading">
+              <div>
+                <span class="project-number">Dự án 02</span>
+                <h3 id="oc-len-title">ỐC LEN SHOP</h3>
+              </div>
+              <p class="project-kind">Website thương mại điện tử<br>WooCommerce</p>
+            </header>
+            <div class="project-body project-body-stacked">
+              <div class="project-gallery gallery-oc" aria-label="Thư viện ảnh website Ốc Len Shop">
+                <img class="sub-img" src="https://via.placeholder.com/400x200" alt="Ảnh website Ốc Len Shop, khung bên trái" width="400" height="200">
+                <img class="main-img" src="https://via.placeholder.com/400x200" alt="Ảnh chính website Ốc Len Shop" width="400" height="200">
+                <img class="sub-img" src="https://via.placeholder.com/400x200" alt="Ảnh website Ốc Len Shop, khung bên phải" width="400" height="200">
+              </div>
+              <div class="project-details">
+                <section>
+                  <h4>Vai trò</h4>
+                  <p>Phát triển website TMĐT bằng WooCommerce, chuyên sản phẩm đan móc và len sợi.</p>
+                </section>
+                <section>
+                  <h4>Hiệu quả hoạt động</h4>
+                  <p class="result-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bổ sung nhận xét về trải nghiệm mua sắm, hoạt động và hiệu quả website tại đây.</p>
+                </section>
+              </div>
             </div>
           </article>
         </div>
